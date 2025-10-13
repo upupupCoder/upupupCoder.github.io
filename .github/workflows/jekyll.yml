@@ -44,8 +44,8 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name:  GitHub API authentication 
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+          shell:bash
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
